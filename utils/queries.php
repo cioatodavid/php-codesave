@@ -27,4 +27,18 @@ function getUsers(){
   return $users;
 }
 
+function getUserById($id){
+  $conn = connect();
+  $sql = "SELECT * FROM user_profile WHERE id = $id";
+  $result = $conn->query($sql);
+  $user = array();
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+      $user[] = $row;
+    }
+  }
+  disconnect($conn);
+  return $user;
+}
+
 ?>

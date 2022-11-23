@@ -7,8 +7,6 @@ $usercount = countTable('user_profile');
 $snippetcount = countTable('snippet');
 $comentcount = countTable('reply');
 
-
-
 ?>
 
 <!DOCTYPE html>
@@ -83,7 +81,7 @@ $comentcount = countTable('reply');
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Dashboard</h1>
+                    <h1 class="mt-4">Painel de Controle</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">Dashboard</li>
                     </ol>
@@ -144,7 +142,7 @@ $comentcount = countTable('reply');
                                     $users = getUsers();
                                     $userArray = array();
                                     foreach ($users as $user) {
-                                        tableRow(
+                                        tableRowUser(
                                             $user['id'],
                                             $user['name'],
                                             $user['email'],

@@ -82,11 +82,11 @@ if (isset($_SESSION['user'])) {
                                                         header('Location: ../pages/index.php');
                                                     }
                                                 } else {
-                                                    wrongCredentials("Usuário ou senha incorretos");
+                                                    error("Usuário ou senha incorretos");
                                                 }
                                                 disconnect($conn);
                                             } else {
-                                                wrongCredentials("Preencha todos os campos");
+                                                error("Preencha todos os campos");
                                             }
                                         }
 

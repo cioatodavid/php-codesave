@@ -1,5 +1,5 @@
 <?php
-function wrongCredentials($message)
+function error($message)
 {
   echo "<div class='alert alert-danger' role='alert'>
   $message
@@ -22,7 +22,7 @@ function warning($message)
 </div>";
 }
 
-function tableRow($id, $name, $email, $password,$bio,$picture, $type)
+function tableRowUser($id, $name, $email, $password,$bio,$picture, $type)
 {
   echo "
 <tr class=''>
@@ -33,8 +33,8 @@ function tableRow($id, $name, $email, $password,$bio,$picture, $type)
   <td>$bio</td>
   <td>$picture</td>
   <td>$type</td>
-  <td><a href='edit.php?id=$id' class='btn btn-sm btn-primary'><i class='fas fa-edit'></i></a></td>
-  <td><a href='delete.php?id=$id' class='btn btn-sm btn-danger'><i class='fas fa-trash'></i></a></td>
+  <td><a href='userEdit.php?id=$id' class='btn btn-sm btn-primary'><i class='fas fa-edit'></i></a></td>
+  <td><a href='deleteUser.php?id=$id' class='btn btn-sm btn-danger'><i class='fas fa-trash'></i></a></td>
 </tr>";
 }
 
