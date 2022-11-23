@@ -16,9 +16,9 @@
 
       <?php
       include '../components/components.php';
-      echo card('CardailwinKJASd ASDJKASJKDAS ASDJKASDJKd', 'Download', 'Edit', 'Delete');
-      echo card('Cardailwind', 'Download', 'Edit', 'Delete');
-      echo card('Cardailwind', 'Download', 'Edit', 'Delete');
+      echo card('Title1 ASDJKASJKDAS ASDJKASDJKd', 'Download', 'Edit', 'Delete');
+      echo card('Title2', 'Download', 'Edit', 'Delete');
+      echo card('Title3', 'Download', 'Edit', 'Delete');
       ?>
     </main>
 

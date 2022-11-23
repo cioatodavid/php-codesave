@@ -1,32 +1,44 @@
 <?php
-
-function card($title, $download, $edit, $delete)
+function wrongCredentials($message)
 {
-    return "
-        <div class='bg-gray-50 p-3 rounded-lg min-w-full  max-w-4xl lg:min-w-[50%] xl:min-w-[40%]'>
-            <div class='m-5 flex flex-col items-center gap-5'>
-                <h1 class='text-2xl font-semibold text-center'>$title</h1>
-                
-                " . multiBtn($edit, $download, $delete) . "
-                
-            </div>
-        </div>
-    ";
+  echo "<div class='alert alert-danger' role='alert'>
+  $message
+</div>";
 }
 
 
-function multiBtn($edit, $download, $delete)
+function success($message)
 {
-    return "
-    <div class='flex items-center justify-between flex-row gap-3 w-full'>
-    <a href='$edit' 
+  echo "<div class='alert alert-success' role='alert'>
+  $message
+</div>";
+}
 
-    class='btn btn-primary p-3 bg-indigo-500 flex items-center gap-3 justify-center hover:bg-indigo-700 hover:shadow-md transition-all rounded w-14 text-center text-white'
-    ><i class='ri-edit-box-line'></i></a>
+function warning($message)
+{
+  echo "<div class='alert alert-warning' role='alert'>
+  $message
 
-    <a href='$download' class='btn flex items-center gap-3 justify-center btn-primary p-3 bg-indigo-500 hover:bg-indigo-700 hover:shadow-md transition-all rounded text-center text-white w-full'><i class='ri-download-cloud-line'></i>Download</a>
+</div>";
+}
 
-    <a href='$delete' class='btn btn-primary p-3 flex items-center gap-3 justify-center bg-red-500 hover:bg-red-700 hover:shadow-md transition-all rounded w-14 text-center text-white'><i class='ri-delete-bin-line'></i></a>
-    </div>
-    ";
+function tableRow($id, $name, $email, $password,$bio,$picture, $type)
+{
+  echo "
+<tr class=''>
+  <td>$id</td>
+  <td>$name</td>
+  <td>$email</td>
+  <td>$password</td>
+  <td>$bio</td>
+  <td>$picture</td>
+  <td>$type</td>
+  <td><a href='edit.php?id=$id' class='btn btn-sm btn-primary'><i class='fas fa-edit'></i></a></td>
+  <td><a href='delete.php?id=$id' class='btn btn-sm btn-danger'><i class='fas fa-trash'></i></a></td>
+</tr>";
+}
+
+function createTd($value)
+{
+  echo "<td>$value</td>";
 }
