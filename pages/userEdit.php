@@ -92,7 +92,7 @@ if (isset($_GET['id'])) {
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table me-1"></i>
-                            <?php echo 'ID: '. $user['id'] ?>
+                            <?php echo 'ID: ' . $user['id'] ?>
                         </div>
                         <div class="card-body">
                             <div class="mb-3">
@@ -116,9 +116,19 @@ if (isset($_GET['id'])) {
                                 <input type="text" name="" id="" value="<?php echo $user['picture'] ?>" class="form-control" placeholder="" aria-describedby="helpId">
                             </div>
                             <div class="mb-3">
-                                <label for="" class="form-label">Tipo</label>
-                                <input type="text" name="" id="" class="form-control" placeholder="" aria-describedby="helpId" value="<?php echo $user['user_type_id'] ?>">
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Tipo</label>
+                                    <select class="form-select" name="" id="">
+                                        <option <?php if ($user['user_type_id'] == 1) {
+                                                    echo "selected";
+                                                }  ?> value="1">Admin</option>
+                                        <option <?php if ($user['user_type_id'] == 2) {
+                                                    echo "selected";
+                                                }  ?> value="2">User</option>
+                                    </select>
+                                </div>
                             </div>
+
 
                         </div>
                     </div>

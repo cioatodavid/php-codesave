@@ -62,9 +62,9 @@ $comentcount = countTable('reply');
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="layout-static.html">Snippets</a>
-                                <a class="nav-link" href="layout-sidenav.html">Usuários</a>
-                                <a class="nav-link" href="layout-sidenav.html">Comentários</a>
+                                <a class="nav-link" href="snippetIndex.php">Snippets</a>
+                                <a class="nav-link" href="userIndex.php">Usuários</a>
+                                <a class="nav-link" href="replyIndex.php">Comentários</a>
                             </nav>
                         </div>
 
@@ -163,8 +163,6 @@ $comentcount = countTable('reply');
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-    <script src="js/datatables-simple-demo.js"></script>
 </body>
 
 </html>
