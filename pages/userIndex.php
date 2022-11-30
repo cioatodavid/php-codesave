@@ -125,6 +125,7 @@ $comentcount = countTable('reply');
                     ?>
                   </tbody>
                 </table>
+               <a name="" id="" class="btn btn-primary" href="./userInsert.php" role="button">Cadastrar novo usuário</a>
               </div>
             </div>
           </div>

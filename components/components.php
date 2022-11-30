@@ -34,7 +34,7 @@ function tableRowUser($id, $name, $email, $password,$bio,$picture, $type)
   <td>$picture</td>
   <td>$type</td>
   <td><a href='userEdit.php?id=$id' class='btn btn-sm btn-primary'><i class='fas fa-edit'></i></a></td>
-  <td><a href='deleteUser.php?id=$id' class='btn btn-sm btn-danger'><i class='fas fa-trash'></i></a></td>
+  <td><a href='userDelete.php?id=$id' class='btn btn-sm btn-danger'><i class='fas fa-trash'></i></a></td>
 </tr>";
 }
 

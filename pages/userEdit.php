@@ -88,50 +88,55 @@ if (isset($_GET['id'])) {
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">Editar Usuário</h1>
 
-
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-table me-1"></i>
-                            <?php echo 'ID: ' . $user['id'] ?>
-                        </div>
-                        <div class="card-body">
-                            <div class="mb-3">
-                                <label for="" class="form-label">Nome</label>
-                                <input type="text" name="" id="" value="<?php echo $user['name'] ?>" class="form-control" placeholder="" aria-describedby="helpId">
+                    <form action="../utils/update.php" method="post">
+                        <input type="hidden" name="user">
+                        <input type="hidden" name="id" value="<?php echo $user['id'] ?>">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                <?php echo 'ID: ' . $user['id'] ?>
                             </div>
-                            <div class="mb-3">
-                                <label for="" class="form-label">E-mail</label>
-                                <input type="text" name="" id="" value="<?php echo $user['email'] ?>" class="form-control" placeholder="" aria-describedby="helpId">
-                            </div>
-                            <div class="mb-3">
-                                <label for="" class="form-label">Senha</label>
-                                <input type="text" name="" id="" value="<?php echo $user['password'] ?>" class="form-control" placeholder="" aria-describedby="helpId">
-                            </div>
-                            <div class="mb-3">
-                                <label for="" class="form-label">Sobre</label>
-                                <input type="text" name="" id="" value="<?php echo $user['bio'] ?>" class="form-control" placeholder="" aria-describedby="helpId">
-                            </div>
-                            <div class="mb-3">
-                                <label for="" class="form-label">Avatar</label>
-                                <input type="text" name="" id="" value="<?php echo $user['picture'] ?>" class="form-control" placeholder="" aria-describedby="helpId">
-                            </div>
-                            <div class="mb-3">
+                            <div class="card-body">
                                 <div class="mb-3">
-                                    <label for="" class="form-label">Tipo</label>
-                                    <select class="form-select" name="" id="">
-                                        <option <?php if ($user['user_type_id'] == 1) {
-                                                    echo "selected";
-                                                }  ?> value="1">Admin</option>
-                                        <option <?php if ($user['user_type_id'] == 2) {
-                                                    echo "selected";
-                                                }  ?> value="2">User</option>
-                                    </select>
+                                    <label for="name" class="form-label">Nome</label>
+                                    <input type="text" name="name" value="<?php echo $user['name'] ?>" class="form-control" placeholder="" aria-describedby="helpId">
                                 </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">E-mail</label>
+                                    <input type="text" name="email" value="<?php echo $user['email'] ?>" class="form-control" placeholder="" aria-describedby="helpId">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Senha</label>
+                                    <input type="text" name="password" value="<?php echo $user['password'] ?>" class="form-control" placeholder="" aria-describedby="helpId">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="bio" class="form-label">Sobre</label>
+                                    <input type="text" name="bio" value="<?php echo $user['bio'] ?>" class="form-control" placeholder="" aria-describedby="helpId">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="picture" class="form-label">Avatar</label>
+                                    <input type="text" name="picture" value="<?php echo $user['picture'] ?>" class="form-control" placeholder="" aria-describedby="helpId">
+                                </div>
+                                <div class="mb-3">
+                                    <div class="mb-3">
+                                        <label for="user_type_id" class="form-label">Tipo</label>
+                                        <select class="form-select" name="user_type_id">
+                                            <option <?php if ($user['user_type_id'] == 1) {
+                                                        echo "selected";
+                                                    }  ?> value="1">Admin</option>
+                                            <option <?php if ($user['user_type_id'] == 2) {
+                                                        echo "selected";
+                                                    }  ?> value="2">User</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary mt-2 col-1">Salvar</button>
                             </div>
 
-
                         </div>
-                    </div>
+
+                    </form>
                 </div>
             </main>
         </div>
