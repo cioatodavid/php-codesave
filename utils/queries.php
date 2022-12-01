@@ -43,7 +43,8 @@ function getUserById($id)
   return $user;
 }
 
-function getUserByEmail($email){
+function getUserByEmail($email)
+{
   $conn = connect();
   $sql = "SELECT * FROM user_profile WHERE email = '$email'";
   $result = $conn->query($sql);
@@ -55,7 +56,6 @@ function getUserByEmail($email){
   }
   disconnect($conn);
   return $user;
-  
 }
 
 function insertUser($name, $email, $password, $bio, $picture, $user_type_id)
@@ -124,10 +124,10 @@ function insertSnippet($title, $description, $code, $language, $user_id)
   return $result;
 }
 
-function updateSnippet($id, $title, $description, $code, $language, $user_id)
+function updateSnippet($id, $title, $code, $trigger, $user_profile_id)
 {
   $conn = connect();
-  $sql = "UPDATE snippet SET title = '$title', description = '$description', code = '$code', language = '$language', user_id = '$user_id' WHERE id = $id";
+  $sql = "UPDATE snippet SET title = '$title', code = '$code', trigger = '$trigger', user_profile_id = '$user_profile_id' WHERE id = $id";
   $result = $conn->query($sql);
   disconnect($conn);
   return $result;
@@ -142,51 +142,59 @@ function deleteSnippet($id)
   return $result;
 }
 
-function getReplys()
+function getReplies()
 {
   $conn = connect();
   $sql = "SELECT * FROM reply";
   $result = $conn->query($sql);
-  $replys = array();
+  $replies = array();
   if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-      $replys[] = $row;
+      $replies[] = $row;
     }
   }
   disconnect($conn);
-  return $replys;
+  return $replies;
 }
 
-function getReplysById($id)
+function getReplyById($id)
 {
   $conn = connect();
   $sql = "SELECT * FROM reply WHERE id = $id";
   $result = $conn->query($sql);
-  $replys = array();
+  $replies = array();
   if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-      $replys[] = $row;
+      $replies[] = $row;
     }
   }
   disconnect($conn);
-  return $replys;
+  return $replies;
 }
 
-function insertReply($content, $snippet_id, $user_profile_id){
-  $conn = connect();
-  $sql = "INSERT INTO reply (content, snippet_id, user_profile_id) VALUES ('$content', '$user_profile_id', '$snippet_id')";
-  $result = $conn->query($sql);
-  disconnect($conn);
-  return $result;
-
-}
-
-function updateReply($id, $content, $user_id, $snippet_id)
+function insertReply($content, $user_profile_id, $snippet_id,)
 {
   $conn = connect();
-  $sql = "UPDATE reply SET content = '$content', user_id = '$user_id', snippet_id = '$snippet_id' WHERE id = $id";
+  $sql = "INSERT INTO reply (content, user_profile_id, snippet_id) VALUES ('$content', '$user_profile_id', '$snippet_id')";
   $result = $conn->query($sql);
   disconnect($conn);
   return $result;
 }
 
+function updateReply($id, $content, $user_profile_id, $snippet_id)
+{
+  $conn = connect();
+  $sql = "UPDATE reply SET content = '$content', user_profile_id = '$user_profile_id', snippet_id = '$snippet_id' WHERE id = $id";
+  $result = $conn->query($sql);
+  disconnect($conn);
+  return $result;
+}
+
+function deleteReply($id)
+{
+  $conn = connect();
+  $sql = "DELETE FROM reply WHERE id = $id";
+  $result = $conn->query($sql);
+  disconnect($conn);
+  return $result;
+}

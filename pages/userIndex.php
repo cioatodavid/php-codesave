@@ -50,7 +50,7 @@ $comentcount = countTable('reply');
         <div class="sb-sidenav-menu">
           <div class="nav">
             <div class="sb-sidenav-menu-heading">Principal</div>
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="index.php">
               <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
               Painel de controle
             </a>
@@ -125,7 +125,7 @@ $comentcount = countTable('reply');
                     ?>
                   </tbody>
                 </table>
-               <a name="" id="" class="btn btn-primary" href="./userInsert.php" role="button">Cadastrar novo usuário</a>
+                <a name="" id="" class="btn btn-primary" href="./userInsert.php" role="button">Cadastrar novo usuário</a>
               </div>
             </div>
           </div>

@@ -37,10 +37,10 @@ if (isset($_POST['user'])) {
     error("Erro ao criar snippet");
   }
 } else if (isset($_POST['reply'])) {
-  $text = $_POST['text'];
+  $content = $_POST['content'];
   $snippet_id = $_POST['snippet_id'];
   $user_profile_id = $_POST['user_profile_id'];
-  $result = insertReply($text, $snippet_id, $user_profile_id);
+  $result = insertReply($content, $user_profile_id, $snippet_id) ;
   if ($result) {
     header("Location: ../pages/replyIndex.php");
   } else {
@@ -49,5 +49,3 @@ if (isset($_POST['user'])) {
 } else {
   error("Erro ao atualizar");
 }
-
-?>

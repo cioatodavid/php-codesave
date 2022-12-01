@@ -1,9 +1,11 @@
 <?php
 include_once '../utils/permission.php';
 include_once '../utils/queries.php';
-
 checkPermission();
 
+$usercount = countTable('user_profile');
+$snippetcount = countTable('snippet');
+$comentcount = countTable('reply');
 
 ?>
 
@@ -14,7 +16,7 @@ checkPermission();
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <title>Cadastrar Usuário</title>
+  <title>Index</title>
   <link href="css/styles.css" rel="stylesheet" />
   <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 </head>
@@ -79,53 +81,48 @@ checkPermission();
     <div id="layoutSidenav_content">
       <main>
         <div class="container-fluid px-4">
-          <h1 class="mt-4">Cadastrar Usuário</h1>
-
-          <form action="../utils/insert.php" method="post">
-            <input type="hidden" name="user">
-            <div class="card mb-4">
-              <div class="card-header">
-                <i class="fas fa-table me-1"></i>
-                Novo Usuário
-              </div>
-              <div class="card-body">
-                <div class="mb-3">
-                  <label for="name" class="form-label">Nome</label>
-                  <input type="text" name="name" value="" class="form-control" placeholder="" aria-describedby="helpId">
-                </div>
-                <div class="mb-3">
-                  <label for="email" class="form-label">E-mail</label>
-                  <input type="text" name="email" value="" class="form-control" placeholder="" aria-describedby="helpId">
-                </div>
-                <div class="mb-3">
-                  <label for="password" class="form-label">Senha</label>
-                  <input type="text" name="password" value="" class="form-control" placeholder="" aria-describedby="helpId">
-                </div>
-                <div class="mb-3">
-                  <label for="bio" class="form-label">Sobre</label>
-                  <input type="text" name="bio" value="" class="form-control" placeholder="" aria-describedby="helpId">
-                </div>
-                <div class="mb-3">
-                  <label for="picture" class="form-label">Avatar</label>
-                  <input type="text" name="picture" value="" class="form-control" placeholder="" aria-describedby="helpId">
-                </div>
-                <div class="mb-3">
-                  <div class="mb-3">
-                    <label for="user_type_id" class="form-label">Tipo</label>
-                    <select class="form-select" name="user_type_id">
-                      <option value="1">Admin</option>
-                      <option value="2">User</option>
-                    </select>
-                  </div>
-                </div>
-
-                <button type="submit" class="btn btn-primary mt-2 col-1">Cadastrar</button>
-              </div>
-
+          <h1 class="mt-4">Painel de Controle</h1>
+          <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Dashboard</li>
+          </ol>
+          <div class="card mb-4">
+            <div class="card-header">
+              <i class="fas fa-table me-1"></i>
+              Database
             </div>
-
-          </form>
-        </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-light">
+                  <thead>
+                    <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">Autor</th>
+                      <th scope="col">Snippet</th>
+                      <th scope="col">Conteúdo</th>
+                      <th scope="col">Data</th>
+                      <th scope="col">Editar</th>
+                      <th scope="col">Excluir</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    require_once '../components/components.php';
+                    $replies = getReplies();
+                    foreach ($replies as $reply) {
+                      $user = getUserById($reply['user_profile_id']);
+                      $snippet = getSnippetById($reply['snippet_id']);
+                      $content = $reply['content'];
+                      $id = $reply['id'];
+                      $date = $reply['publishedAt'];
+                      tableRowReply($id, $user[0]['name'], $snippet[0]['title'], $content, $date);
+                    }
+                    ?>
+                  </tbody>
+                </table>
+                <a name="" id="" class="btn btn-primary" href="./replyInsert.php" role="button">Cadastrar novo comentário</a>
+              </div>
+            </div>
+          </div>
       </main>
     </div>
   </div>

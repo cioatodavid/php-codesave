@@ -4,6 +4,13 @@ include_once '../utils/queries.php';
 
 checkPermission();
 
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $reply = getReplyById($id);
+    $reply = $reply[0];
+} else {
+    header('Location: index.php');
+}
 
 ?>
 
@@ -14,7 +21,7 @@ checkPermission();
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <title>Cadastrar Usuário</title>
+  <title>Editar Comentário</title>
   <link href="css/styles.css" rel="stylesheet" />
   <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 </head>
@@ -73,53 +80,63 @@ checkPermission();
           <?php echo $_SESSION['name'] ?> -
           <?php echo $_SESSION['user_type'] ?>
         </div>
-
       </nav>
     </div>
     <div id="layoutSidenav_content">
       <main>
         <div class="container-fluid px-4">
-          <h1 class="mt-4">Cadastrar Usuário</h1>
+          <h1 class="mt-4">Editar Comentário</h1>
 
-          <form action="../utils/insert.php" method="post">
-            <input type="hidden" name="user">
+          <form action="../utils/update.php" method="post">
+            <input type="hidden" name="reply">
+            <input type="hidden" name="id" value=" <?php echo $reply['id'] ?>">
             <div class="card mb-4">
               <div class="card-header">
                 <i class="fas fa-table me-1"></i>
-                Novo Usuário
+                <?php echo 'ID: '.$reply['id'] ?>
               </div>
               <div class="card-body">
                 <div class="mb-3">
-                  <label for="name" class="form-label">Nome</label>
-                  <input type="text" name="name" value="" class="form-control" placeholder="" aria-describedby="helpId">
-                </div>
-                <div class="mb-3">
-                  <label for="email" class="form-label">E-mail</label>
-                  <input type="text" name="email" value="" class="form-control" placeholder="" aria-describedby="helpId">
-                </div>
-                <div class="mb-3">
-                  <label for="password" class="form-label">Senha</label>
-                  <input type="text" name="password" value="" class="form-control" placeholder="" aria-describedby="helpId">
-                </div>
-                <div class="mb-3">
-                  <label for="bio" class="form-label">Sobre</label>
-                  <input type="text" name="bio" value="" class="form-control" placeholder="" aria-describedby="helpId">
-                </div>
-                <div class="mb-3">
-                  <label for="picture" class="form-label">Avatar</label>
-                  <input type="text" name="picture" value="" class="form-control" placeholder="" aria-describedby="helpId">
+                  <label for="content" class="form-label">Conteúdo</label>
+                  <input type="text" name="content" value="<?php echo $reply['content'] ?> " class="form-control" placeholder="">
+        
                 </div>
                 <div class="mb-3">
                   <div class="mb-3">
-                    <label for="user_type_id" class="form-label">Tipo</label>
-                    <select class="form-select" name="user_type_id">
-                      <option value="1">Admin</option>
-                      <option value="2">User</option>
+                    <label for="user_profile_id" class="form-label">Usuário</label>
+                    <select class="form-select" name="user_profile_id">
+                      <?php
+                      $users = getUsers();
+                      foreach ($users as $user) {
+                       if ($user['id'] == $reply['user_profile_id']) {
+                          echo '<option value="' . $user['id'] . '" selected>' . $user['name'] . '</option>';
+                        } else {
+                          echo '<option value="' . $user['id'] . '">' . $user['name'] . '</option>';
+                        }
+                      }
+                      ?>
+                    </select>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="mb-3">
+                    <label for="snippet_id" class="form-label">Snippet</label>
+                    <select class="form-select" name="snippet_id">
+                      <?php
+                      $snippets = getSnippets();
+                      foreach ($snippets as $snippet) {
+                        if ($snippet['id'] == $reply['snippet_id']) {
+                          echo '<option value="' . $snippet['id'] . '" selected>' . $snippet['title'] . '</option>';
+                        } else {
+                          echo '<option value="' . $snippet['id'] . '">' . $snippet['title'] . '</option>';
+                        }
+                      }
+                      ?>
                     </select>
                   </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary mt-2 col-1">Cadastrar</button>
+                <button type="submit" class="btn btn-primary mt-2">Salvar alterações</button>
               </div>
 
             </div>

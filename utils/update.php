@@ -20,11 +20,10 @@ if (isset($_POST['user'])) {
 } else if (isset($_POST['snippet'])) {
   $id = $_POST['id'];
   $title = $_POST['title'];
-  $description = $_POST['description'];
   $code = $_POST['code'];
-  $language = $_POST['language'];
-  $user_id = $_POST['user_id'];
-  $result = updateSnippet($id, $title, $description, $code, $language, $user_id);
+  $trigger = $_POST['trigger'];
+  $user_id = $_POST['user_profile_id'];
+  $result = updateSnippet($id, $title, $code, $trigger, $user_id);
   if ($result) {
     header("Location: ../pages/snippetIndex.php");
   } else {
@@ -32,10 +31,10 @@ if (isset($_POST['user'])) {
   }
 } else if (isset($_POST['reply'])) {
   $id = $_POST['id'];
-  $text = $_POST['text'];
+  $content = $_POST['content'];
   $snippet_id = $_POST['snippet_id'];
-  $user_id = $_POST['user_id'];
-  $result = updateReply($id, $text, $snippet_id, $user_id);
+  $user_id = $_POST['user_profile_id'];
+  $result = updateReply($id, $content, $user_id, $snippet_id);
   if ($result) {
     header("Location: ../pages/replyIndex.php");
   } else {

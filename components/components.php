@@ -22,7 +22,7 @@ function warning($message)
 </div>";
 }
 
-function tableRowUser($id, $name, $email, $password,$bio,$picture, $type)
+function tableRowUser($id, $name, $email, $password, $bio, $picture, $type)
 {
   echo "
 <tr class=''>
@@ -35,6 +35,37 @@ function tableRowUser($id, $name, $email, $password,$bio,$picture, $type)
   <td>$type</td>
   <td><a href='userEdit.php?id=$id' class='btn btn-sm btn-primary'><i class='fas fa-edit'></i></a></td>
   <td><a href='userDelete.php?id=$id' class='btn btn-sm btn-danger'><i class='fas fa-trash'></i></a></td>
+</tr>";
+}
+
+function tableRowReply($id, $user, $snippet, $content, $publishedat)
+{
+  echo "
+<tr class=''>
+  <td>$id</td>
+  <td>$user</td>
+  <td>$snippet</td>
+  <td>$content</td>
+  <td>$publishedat</td>
+  <td><a href='replyEdit.php?id=$id' class='btn btn-sm btn-primary'><i class='fas fa-edit'></i></a></td>
+  <td><a href='replyDelete.php?id=$id' class='btn btn-sm btn-danger'><i class='fas fa-trash'></i></a></td>
+</tr>";
+}
+
+function tableRowSnippet($id, $user, $title, $trigger, $code, $publishedat)
+{
+  echo "
+<tr class=''>
+  <td>$id</td>
+  <td>$user</td>
+  <td>$title</td>
+  <td>$trigger</td>
+  <td>$publishedat</td>
+  <td><a href='snippetEdit.php?id=$id' class='btn btn-sm btn-primary'><i class='fas fa-edit'></i></a></td>
+  <td><a href='snippetDelete.php?id=$id' class='btn btn-sm btn-danger'><i class='fas fa-trash'></i></a></td>
+  <td><a href='snippetDownload.php?id=$id' class='btn btn-sm btn-primary'><i class='fas fa-download'></i></a></td>
+
+
 </tr>";
 }
 
