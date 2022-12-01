@@ -35,11 +35,11 @@ if (isset($_SESSION['user'])) {
                                 <div class="card-body">
                                     <form class="need-validation" action="" method="POST" novalidate>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputEmail" name="inputEmail" type="email" required placeholder="name@example.com" />
+                                            <input class="form-control" id="inputEmail" name="inputEmail" type="email" required />
                                             <label for="inputEmail">E-mail</label>
                                         </div>
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputPassword" name="inputPassword" type="password" required placeholder="Password" />
+                                            <input class="form-control" id="inputPassword" name="inputPassword" type="password" required />
                                             <label for="inputPassword">Senha</label>
                                         </div>
                                         <div class="form-check mb-3">
