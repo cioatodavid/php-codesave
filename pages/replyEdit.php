@@ -5,11 +5,11 @@ include_once '../utils/queries.php';
 checkPermission();
 
 if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-    $reply = getReplyById($id);
-    $reply = $reply[0];
+  $id = $_GET['id'];
+  $reply = getReplyById($id);
+  $reply = $reply[0];
 } else {
-    header('Location: index.php');
+  header('Location: index.php');
 }
 
 ?>
@@ -93,13 +93,14 @@ if (isset($_GET['id'])) {
             <div class="card mb-4">
               <div class="card-header">
                 <i class="fas fa-table me-1"></i>
-                <?php echo 'ID: '.$reply['id'] ?>
+                <?php echo 'ID: ' . $reply['id'] ?>
               </div>
               <div class="card-body">
+    
                 <div class="mb-3">
                   <label for="content" class="form-label">Conteúdo</label>
-                  <input type="text" name="content" value="<?php echo $reply['content'] ?> " class="form-control" placeholder="">
-        
+                  <textarea class="form-control" id="content" name="content" rows="3"><?php echo $reply['content'] ?>    </textarea>
+
                 </div>
                 <div class="mb-3">
                   <div class="mb-3">
@@ -108,7 +109,7 @@ if (isset($_GET['id'])) {
                       <?php
                       $users = getUsers();
                       foreach ($users as $user) {
-                       if ($user['id'] == $reply['user_profile_id']) {
+                        if ($user['id'] == $reply['user_profile_id']) {
                           echo '<option value="' . $user['id'] . '" selected>' . $user['name'] . '</option>';
                         } else {
                           echo '<option value="' . $user['id'] . '">' . $user['name'] . '</option>';

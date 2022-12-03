@@ -115,14 +115,15 @@ function getSnippetById($id)
   return $snippet;
 }
 
-function insertSnippet($title, $description, $code, $language, $user_id)
+function insertSnippet($title, $code, $trigger, $language, $user_id)
 {
   $conn = connect();
-  $sql = "INSERT INTO snippet (title, description, code, language, user_id) VALUES ('$title', '$description', '$code', '$language', '$user_id')";
+  $sql = "INSERT INTO snippet (title, code, trigger, language, user_profile_id) VALUES ('$title', '" . $code . "', '$trigger', '$language', '$user_id')";
   $result = $conn->query($sql);
   disconnect($conn);
   return $result;
 }
+
 
 function updateSnippet($id, $title, $code, $trigger, $user_profile_id)
 {
@@ -141,6 +142,12 @@ function deleteSnippet($id)
   disconnect($conn);
   return $result;
 }
+
+
+
+
+
+
 
 function getReplies()
 {

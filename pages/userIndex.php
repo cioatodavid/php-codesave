@@ -16,7 +16,7 @@ $comentcount = countTable('reply');
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <title>Index</title>
+  <title>User</title>
   <link href="css/styles.css" rel="stylesheet" />
   <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 </head>
@@ -84,6 +84,7 @@ $comentcount = countTable('reply');
           <h1 class="mt-4">Painel de Controle</h1>
           <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">Dashboard</li>
+            <li class="breadcrumb-item active">Usuários</li>
           </ol>
           <div class="card mb-4">
             <div class="card-header">

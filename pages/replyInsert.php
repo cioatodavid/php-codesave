@@ -91,9 +91,9 @@ checkPermission();
               <div class="card-body">
                 <div class="mb-3">
                   <label for="content" class="form-label">Conteúdo</label>
-                  <input type="text" name="content" value="" class="form-control" placeholder="">
-
+                  <textarea class="form-control" id="content" name="content" rows="3"></textarea>
                 </div>
+
                 <div class="mb-3">
                   <div class="mb-3">
                     <label for="user_profile_id" class="form-label">Usuário</label>

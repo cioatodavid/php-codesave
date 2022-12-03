@@ -14,7 +14,6 @@ if (isset($_POST['user'])) {
   if (count($already) > 0) {
     error("Email já cadastrado");
     echo "<script>setTimeout(function(){window.location.href='../pages/userInsert.php'}, 2000);</script>";
-
   } else {
     $result = insertUser($name, $email, $password, $bio, $picture, $user_type_id);
     if ($result) {
@@ -25,27 +24,28 @@ if (isset($_POST['user'])) {
     }
   }
 } else if (isset($_POST['snippet'])) {
-  $title = $_POST['title'];
-  $description = $_POST['description'];
-  $code = $_POST['code'];
-  $language = $_POST['language'];
+  $snippet = $_FILES['blob'];
   $user_profile_id  = $_POST['user_profile_id'];
-  $result = insertSnippet($title, $description, $code, $language, $user_profile_id);
+  $title = $_POST['title'];
+  $trigger = $_POST['trigger'];
+  $language = $snippet['type'];
+  $blob = file_get_contents($snippet['tmp_name']);
+  $result = insertSnippet($title, $blob, $trigger, $language, $user_profile_id);
   if ($result) {
     header("Location: ../pages/snippetIndex.php");
   } else {
-    error("Erro ao criar snippet");
+    error("Erro ao inserir snippet");
+    echo "<script>setTimeout(function(){window.location.href='../pages/snippetInsert.php'}, 2000);</script>";
   }
 } else if (isset($_POST['reply'])) {
   $content = $_POST['content'];
   $snippet_id = $_POST['snippet_id'];
   $user_profile_id = $_POST['user_profile_id'];
-  $result = insertReply($content, $user_profile_id, $snippet_id) ;
+  $result = insertReply($content, $user_profile_id, $snippet_id);
   if ($result) {
-    header("Location: ../pages/replyIndex.php");
+    header("Location: ../pages/snippetIndex.php");
   } else {
-    error("Erro ao comentar");
+    error("Erro ao inserir resposta");
+    echo "<script>setTimeout(function(){window.location.href='../pages/snippetIndex.php'}, 2000);</script>";
   }
-} else {
-  error("Erro ao atualizar");
 }

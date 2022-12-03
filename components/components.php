@@ -52,7 +52,7 @@ function tableRowReply($id, $user, $snippet, $content, $publishedat)
 </tr>";
 }
 
-function tableRowSnippet($id, $user, $title, $trigger, $code, $publishedat)
+function tableRowSnippet($id, $user, $title, $trigger, $publishedat)
 {
   echo "
 <tr class=''>
@@ -63,7 +63,7 @@ function tableRowSnippet($id, $user, $title, $trigger, $code, $publishedat)
   <td>$publishedat</td>
   <td><a href='snippetEdit.php?id=$id' class='btn btn-sm btn-primary'><i class='fas fa-edit'></i></a></td>
   <td><a href='snippetDelete.php?id=$id' class='btn btn-sm btn-danger'><i class='fas fa-trash'></i></a></td>
-  <td><a href='snippetDownload.php?id=$id' class='btn btn-sm btn-primary'><i class='fas fa-download'></i></a></td>
+  <td><a href='snippetDownload.php?id=$id' class='btn btn-sm btn-success'><i class='fas fa-download'></i></a></td>
 
 
 </tr>";
