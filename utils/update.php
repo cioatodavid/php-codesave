@@ -11,6 +11,11 @@ if (isset($_POST['user'])) {
   $bio = $_POST['bio'];
   $picture = $_POST['picture'];
   $user_type_id = $_POST['user_type_id'];
+  if ($picture = '' || $picture = null) {
+    $picture = 'https://cdn.discordapp.com/embed/avatars/0.png';
+  }else{
+    $picture = $_POST['picture'];
+  }
   $result = updateUser($id, $name, $email, $password, $bio, $picture, $user_type_id);
   if ($result) {
     header("Location: ../pages/userIndex.php");
@@ -19,15 +24,27 @@ if (isset($_POST['user'])) {
   }
 } else if (isset($_POST['snippet'])) {
   $id = $_POST['id'];
+  $snippet = $_FILES['blob'];
+  $user_profile_id  = $_POST['user_profile_id'];
   $title = $_POST['title'];
-  $code = $_POST['code'];
   $trigger = $_POST['trigger'];
-  $user_id = $_POST['user_profile_id'];
-  $result = updateSnippet($id, $title, $code, $trigger, $user_id);
-  if ($result) {
-    header("Location: ../pages/snippetIndex.php");
+  if ($snippet['name'] != "" || $snippet['name'] != null) {
+    $ext = pathinfo($snippet['name'], PATHINFO_EXTENSION);
+    $blob = file_get_contents($snippet['tmp_name']);
+    $blob = base64_encode($blob);
+    $result = blobUpdateSnippet($id, $title, $blob, $trigger, $user_profile_id, $ext);
+    if ($result) {
+      header("Location: ../pages/snippetIndex.php");
+    } else {
+      error("Erro ao atualizar snippet");
+    }
   } else {
-    error("Erro ao atualizar snippet");
+    $result = updateSnippet($id, $title, $trigger, $user_profile_id);
+    if ($result) {
+      header("Location: ../pages/snippetIndex.php");
+    } else {
+      error("Erro ao atualizar snippet");
+    }
   }
 } else if (isset($_POST['reply'])) {
   $id = $_POST['id'];

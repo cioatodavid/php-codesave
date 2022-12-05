@@ -115,24 +115,44 @@ function getSnippetById($id)
   return $snippet;
 }
 
-function insertSnippet($title, $code, $trigger, $language, $user_id)
+
+function blobInsertSnippet($title, $code, $trigger, $user_id, $file_ext)
 {
   $conn = connect();
-  $sql = "INSERT INTO snippet (title, code, trigger, language, user_profile_id) VALUES ('$title', '" . $code . "', '$trigger', '$language', '$user_id')";
-  $result = $conn->query($sql);
+  if($title == "" || $title == null){
+    $title = "Sem Título";
+  }
+  $sql = "INSERT INTO `snippet` (`title`, `code`, `file_ext`, `trigger`, `user_profile_id`) VALUES (?, ?, ?, ?, ?)";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("ssssi", $title, $code, $file_ext, $trigger, $user_id);
+  $result = $stmt->execute();
+  disconnect($conn);
+  return $result;
+}
+
+function updateSnippet($id, $title, $trigger, $user_id)
+{
+  $conn = connect();
+  $sql = "UPDATE `snippet` SET `title` = ?, `trigger` = ?, `user_profile_id` = ? WHERE `id` = ?";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("sssi", $title, $trigger, $user_id, $id);
+  $result = $stmt->execute();
+  disconnect($conn);
+  return $result;
+}
+
+function blobUpdateSnippet($id, $title, $code, $trigger, $user_id, $file_ext)
+{
+  $conn = connect();
+  $sql = "UPDATE `snippet` SET `title` = ?, `code` = ?, `file_ext` = ?, `trigger` = ?, `user_profile_id` = ? WHERE `id` = ?";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("ssssii", $title, $code, $file_ext, $trigger, $user_id, $id);
+  $result = $stmt->execute();
   disconnect($conn);
   return $result;
 }
 
 
-function updateSnippet($id, $title, $code, $trigger, $user_profile_id)
-{
-  $conn = connect();
-  $sql = "UPDATE snippet SET title = '$title', code = '$code', trigger = '$trigger', user_profile_id = '$user_profile_id' WHERE id = $id";
-  $result = $conn->query($sql);
-  disconnect($conn);
-  return $result;
-}
 
 function deleteSnippet($id)
 {
@@ -142,7 +162,6 @@ function deleteSnippet($id)
   disconnect($conn);
   return $result;
 }
-
 
 
 

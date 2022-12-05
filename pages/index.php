@@ -7,6 +7,12 @@ $usercount = countTable('user_profile');
 $snippetcount = countTable('snippet');
 $comentcount = countTable('reply');
 
+$user = getUserById($_SESSION['user']);
+
+if ($user[0]['picture'] == '' || $user[0]['picture'] == null) {
+    $user[0]['picture'] = 'https://cdn.discordapp.com/embed/avatars/0.png';
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -117,47 +123,30 @@ $comentcount = countTable('reply');
 
                     <div class="card mb-4">
                         <div class="card-header">
-                            <i class="fas fa-table me-1"></i>
-                            Database
+                            <i class="fas fa-user me-1"></i>
+                            Perfil
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-light">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">ID</th>
-                                            <th scope="col">Nome</th>
-                                            <th scope="col">E-mail</th>
-                                            <th scope="col">Senha</th>
-                                            <th scope="col">Sobre</th>
-                                            <th scope="col">Avatar</th>
-                                            <th scope="col">Tipo</th>
-                                            <th scope="col">Editar</th>
-                                            <th scope="col">Excluir</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php
-                                    require_once '../components/components.php';
-                                    $users = getUsers();
-                                    $userArray = array();
-                                    foreach ($users as $user) {
-                                        tableRowUser(
-                                            $user['id'],
-                                            $user['name'],
-                                            $user['email'],
-                                            $user['password'],
-                                            $user['bio'],
-                                            $user['picture'],
-                                            $user['user_type_id']
-                                        );
-                                    }
-                                    ?>
-                                    </tbody>
-                                </table>
+                        <div class="container-fluid">
+                            <div class="row justify-content-center align-items-center g-2">
+
+                                <div class="col-8 col-md-6 col-lg-5 col-xl-3">
+                                    <div class="card text-center m-4">
+                                        <div class="p-1 p-md-2 p-lg-3">
+
+                                            <img class="card-img-top" src=" <?php echo $user[0]['picture'] ?> " alt="picture_image">
+                                            <div class="card-body">
+                                                <h4 class="card-title"> <?php echo $user[0]['name'] ?> <span class="idtext"> <?php echo "#" . $user[0]['id'] ?></span></h4>
+                                                <p class="card-text"> <?php echo $user[0]['bio'] ?> </p>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer text-muted">
+                                            <?php echo $user[0]['email'] ?>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-                    </div>
             </main>
         </div>
     </div>

@@ -4524,6 +4524,9 @@ textarea.form-control-lg {
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
 }
+
+
+
 .card > hr {
   margin-right: 0;
   margin-left: 0;
@@ -4554,6 +4557,10 @@ textarea.form-control-lg {
 
 .card-title {
   margin-bottom: 0.5rem;
+}
+
+.card-title > span {
+  color: rgba(0, 0, 0, 0.35);
 }
 
 .card-subtitle {
@@ -4613,6 +4620,7 @@ textarea.form-control-lg {
 .card-img,
 .card-img-top,
 .card-img-bottom {
+  flex-shrink: 0;
   width: 100%;
 }
 
@@ -11689,3 +11697,4 @@ body {
   font-size: 0.75rem;
   border-radius: 0.25rem !important;
 }
+

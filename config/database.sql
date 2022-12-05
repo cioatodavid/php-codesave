@@ -18,8 +18,9 @@ CREATE TABLE `user_profile` (
 
 CREATE TABLE `snippet` (
 	`id` INT(10) NOT NULL AUTO_INCREMENT,
-	`title` VARCHAR(100) DEFAULT 'New Snippet',
+	`title` VARCHAR(100) DEFAULT 'Sem Titulo',
 	`code` LONGBLOB NOT NULL,
+	`file_ext` VARCHAR(15) NOT NULL DEFAULT 'txt',
 	`trigger` VARCHAR(30),
 	`publishedAt` DATE DEFAULT CURRENT_TIMESTAMP,
   `user_profile_id` INT(10) NOT NULL,
