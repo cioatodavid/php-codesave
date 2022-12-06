@@ -43,14 +43,15 @@ CREATE TABLE `reply` (
 );
 
 
---inserting data
 
 INSERT INTO `user_type` (`name`) VALUES ('admin');
 
 INSERT INTO `user_type` (`name`) VALUES ('user');
 
-INSERT INTO `user_profile` (`password`, `email`, `name`, `bio`, `user_type_id`) VALUES ('123', 'david@upf.br', 'David', 'I am a student', 1);
+INSERT INTO `user_profile` (`password`, `email`, `name`, `bio`, `user_type_id`) VALUES ('123', 'david@upf.br', 'David', 'Análise e Desenvolvimento de Sistemas - UPF', 1);
 
-INSERT INTO `user_profile` (`password`, `email`, `name`, `bio`, `user_type_id`) VALUES ('123', 'tonezer@upf.br', 'Tonezer', 'Web Dev Professor - UPF', 2);
+INSERT INTO `user_profile` (`password`, `email`, `name`, `bio`, `user_type_id`) VALUES ('123', 'tonezer@upf.br', 'Tonezer', 'Professor - UPF', 2);
+
+--https://www.upf.br/_uploads/51cd5bae-d3fa-4d40-82ab-af33bc163ef9_Zoom.JPG
 
 
